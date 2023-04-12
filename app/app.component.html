@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+      <form [formGroup]="SignupForm" (ngSubmit)="onSubmit()">
+        <div formGroupName="userData">
+          <div class="form-group">
+             <label for="date">Date</label>
+             <input type="text" class="form-control"
+              id="date" formControlName = "date">
+             <span class="help-block" *ngIf="!SignupForm.get('userData.date').valid&&SignupForm.get('userData.date').touched">
+               <span *ngIf = "SignupForm.get('userData.date').errors['nameIsForbidden']">name is invalid</span>
+               <span *ngIf = "SignupForm.get('userData.datee').errors['required']">field is required</span>
+             </span>
+          </div>
+          
+
+          <div class="form-group">
+            <label for="jobtitle"> Job Title</label>
+            <input type="text" class="form-control"
+            id="jobtitle" formControlName="jobtitle">
+            <span class="help-block" *ngIf="!SignupForm.get('userData.jobtitle').valid&&SignupForm.get('userData.jobtitle').touched">
+              <span *ngIf = "SignupForm.get('userData.jobtitle').errors['nameIsForbidden']">name is invalid</span>
+              <span *ngIf = "SignupForm.get('userData.jobtitle').errors['required']">field is required</span>
+            </span>
+          </div>
+
+          <div class="section">
+            <h6 style="font-weight:bold">Department</h6>
+            <select>
+              <option>Select</option>
+                <option *ngFor="let item of this.dataList;let i = index" value="{{item.code}}" [selected]="i == 0">
+                  {{item.name}}
+                </option>
+              </select>
+          </div>
+          <div class="form-group">
+            <label for="hiringname"> Hiring Manager Name</label>
+            <input type="text" class="form-control"
+            id="hiringname" formControlName="hiringname">
+            <span class="help-block" *ngIf="!SignupForm.get('userData.hiringname').valid&&SignupForm.get('userData.hiringname').touched">
+              <span *ngIf = "SignupForm.get('userData.jobtitle').errors['nameIsForbidden']">name is invalid</span>
+              <span *ngIf = "SignupForm.get('userData.jobtitle').errors['required']">field is required</span>
+            </span>
+          </div>
+
+          <div class="form-group">
+             <label for="email">Hiring Manager Email</label>
+             <input type="email" class="form-control" 
+             id="email" formControlName = "email">
+
+             <span class="help-block" *ngIf="!SignupForm.get('userData.email').valid && SignupForm.get('userData.email').touched">
+              please enter a valid email id 
+             </span>
+          </div>
+        </div>
+      
+
+         <span class="help-block" *ngIf="!SignupForm.valid && SignupForm.touched">
+             please enter valid data
+           </span>
+
+        <button class="btn btn-primary" type="submit">Submit</button> 
+      </form>
+    </div>
+  </div>
+</div>
